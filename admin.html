@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - OSIS SMU DuMay</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <header>
+        <h1>Panel Admin OSIS</h1>
+        <p>Kelola Informasi dan Pengumuman Sekolah</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="admin.html">Admin</a>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2>Tambah Pengumuman Baru</h2>
+            <form onsubmit="alert('Fitur simulasi: Pengumuman berhasil disimpan!'); return false;">
+                <label for="judul">Judul Pengumuman</label>
+                <input type="text" id="judul" required placeholder="Masukkan judul...">
+
+                <label for="konten">Isi Pengumuman</label>
+                <textarea id="konten" rows="5" required placeholder="Tulis isi pengumuman..."></textarea>
+
+                <button type="submit">Publish Pengumuman</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OSIS SMU DuMay</p>
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
