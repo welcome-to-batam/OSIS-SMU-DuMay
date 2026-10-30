@@ -3,12 +3,12 @@
   "name": "OSIS SMU DuMay",
   "icons": [
     {
-      "src": "https://flaticon.com",
+      "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://flaticon.com",
+      "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
