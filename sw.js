@@ -5,6 +5,7 @@ const ASSETS = [
   './admin.html',
   './style.css',
   './manifest.json'
+  './logo-osis.jpg' // Tambahkan baris ini
 ];
 
 self.addEventListener('install', (e) => {
