@@ -1,0 +1,21 @@
+{
+  "short_name": "OSIS DuMay",
+  "name": "OSIS SMU DuMay",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://flaticon.com",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#007bff",
+  "orientation": "portrait"
+}
