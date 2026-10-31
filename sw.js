@@ -9,6 +9,7 @@ const ASSETS = [
   './icon-192.png', // Tambahkan ikon baru Anda di sini
   './icon-512.png'  // Tambahkan ikon baru Anda di sini
   './banner.png' // Daftarkan berkas banner di sini
+  './kegiatan-terbaru.jpg' // Tambahkan berkas foto ini
 ];
 
 self.addEventListener('install', (e) => {
