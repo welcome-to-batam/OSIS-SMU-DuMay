@@ -9,7 +9,17 @@ const ADMIN_UID = "HWQfLxdBkqNWNdeCxec0PD3ddBJ2";
 
 const style = document.createElement("style");
 style.textContent = `
-  .admin-layout { display: none; }
+    .admin-layout { display: none; }
+
+  body.admin-authenticated .admin-layout {
+    display: flex;
+  }
+
+  @media (max-width: 600px) {
+    body.admin-authenticated .admin-layout {
+      display: block;
+    }
+  }
   #adminLogin {
     min-height: 100vh;
     display: flex;
@@ -101,9 +111,9 @@ form.addEventListener("submit", async (event) => {
 onAuthStateChanged(auth, async (user) => {
   if (user && user.uid === ADMIN_UID) {
     login.style.display = "none";
-    document.querySelector(".admin-layout").style.display = "";
+    document.body.classList.add("admin-authenticated");
   } else {
-    document.querySelector(".admin-layout").style.display = "none";
+    document.body.classList.remove("admin-authenticated");
     login.style.display = "flex";
   }
 });
