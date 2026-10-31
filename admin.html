@@ -3,62 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Admin - OSIS SMU DuMay</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0f3b63">
+    <title>Admin Panel - OSIS SMU DuMay</title>
+
+    <link rel="stylesheet" href="admin.css">
     <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<body class="admin-body">
 
-    <header class="osis-header">
-        <div class="header-top">
-            <div class="logo-container">
-                <img src="logo-osis.jpg" alt="Logo OSIS" class="logo-osis">
-                <div class="brand-text">
-                    <h1>PANEL ADMIN</h1>
-                    <p>Manajemen Sistem OSIS DuMay</p>
-                </div>
+    <header class="admin-header">
+        <div class="admin-brand">
+            <img src="logo-osis.jpg" alt="Logo OSIS">
+            <div>
+                <h1>OSIS SMU DuMay</h1>
+                <p>Administrator Panel</p>
             </div>
         </div>
+
+        <a href="index.html" class="view-site">Lihat Website ↗</a>
     </header>
 
-    <!-- Menu Navigasi Bawah Tetap di Tempat (Profil/Admin Aktif) -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            <span>Beranda</span>
-        </a>
-        <a href="index.html#agenda" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="18" y2="10"></line></svg>
-            <span>Agenda</span>
-        </a>
-        <a href="index.html#galeri" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-            <span>Galeri</span>
-        </a>
-        <a href="admin.html" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>Profil</span>
-        </a>
-    </nav>
+    <div class="admin-layout">
 
-    <main>
-        <div class="card">
-            <h2>Tambah Pengumuman Baru</h2>
-            <form onsubmit="alert('Fitur simulasi: Pengumuman berhasil disimpan!'); return false;">
-                <label for="judul">Judul Pengumuman</label>
-                <input type="text" id="judul" required placeholder="Masukkan judul...">
+        <aside class="admin-sidebar">
+            <p class="sidebar-heading">MENU UTAMA</p>
 
-                <label for="konten">Isi Pengumuman</label>
-                <textarea id="konten" rows="5" required placeholder="Tulis isi pengumuman..."></textarea>
+            <a href="#dashboard" class="side-link active">▦ <span>Dashboard</span></a>
+            <a href="#berita" class="side-link">▤ <span>Berita & Pengumuman</span></a>
+            <a href="#agenda" class="side-link">▦ <span>Agenda Kegiatan</span></a>
+            <a href="#galeri" class="side-link">▧ <span>Galeri Kegiatan</span></a>
+            <a href="#pengurus" class="side-link">♙ <span>Pengurus OSIS</span></a>
+            <a href="#aspirasi" class="side-link">✉ <span>Aspirasi Siswa</span></a>
 
-                <button type="submit">Publish Pengumuman</button>
-            </form>
-        </div>
-    </main>
+            <div class="sidebar-bottom">
+                <p class="sidebar-heading">LAINNYA</p>
+                <a href="#pengaturan" class="side-link">⚙ <span>Pengaturan</span></a>
+                <a href="index.html" class="side-link">↩ <span>Kembali ke Website</span></a>
+            </div>
+        </aside>
 
-    <footer>
-        <p>&copy; 2026 OSIS SMU DuMay</p>
-    </footer>
+        <main class="admin-main">
+
+            <section id="dashboard" class="welcome-section">
+                <div>
+                    <p class="page-label">ADMINISTRATOR</p>
+                    <h2>Dashboard</h2>
+                    <p>Selamat datang di pusat pengelolaan OSIS SMU DuMay.</p>
+                </div>
+                <div class="admin-date">Panel Pengelolaan</div>
+            </section>
+
+            <section class="stats-grid">
+                <article class="stat-card blue">
+                    <span class="stat-icon">▤</span>
+                    <p>Total Berita</p>
+                    <h3>0</h3>
+                    <small>Berita dan pengumuman</small>
+                </article>
+
+                <article class="stat-card green">
+                    <span class="stat-icon">▦</span>
+                    <p>Agenda Kegiatan</p>
+                    <h3>0</h3>
+                    <small>Jadwal kegiatan OSIS</small>
+                </article>
+
+                <article class="stat-card orange">
+                    <span class="stat-icon">▧</span>
+                    <p>Foto Galeri</p>
+                    <h3>0</h3>
+                    <small>Dokumentasi kegiatan</small>
+                </article>
+
+                <article class="stat-card purple">
+                    <span class="stat-icon">✉</span>
+                    <p>Aspirasi Siswa</p>
+                    <h3>0</h3>
+                    <small>Pesan dari siswa</small>
+                </article>
+            </section>
+
+            <section class="content-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Kelola Konten Website</h3>
+                        <p>Pilih bagian yang ingin kamu kelola.</p>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+
+                    <a href="#berita" class="feature-card" id="menu-berita">
+                        <span class="feature-icon blue">▤</span>
+                        <div>
+                            <h4>Berita & Pengumuman</h4>
+                            <p>Publikasikan informasi terbaru untuk siswa.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                    <a href="#agenda" class="feature-card">
+                        <span class="feature-icon green">▦</span>
+                        <div>
+                            <h4>Agenda Kegiatan</h4>
+                            <p>Atur jadwal dan informasi kegiatan OSIS.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                    <a href="#galeri" class="feature-card">
+                        <span class="feature-icon orange">▧</span>
+                        <div>
+                            <h4>Galeri Kegiatan</h4>
+                            <p>Kelola foto dokumentasi kegiatan sekolah.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                    <a href="#pengurus" class="feature-card">
+                        <span class="feature-icon purple">♙</span>
+                        <div>
+                            <h4>Struktur Pengurus</h4>
+                            <p>Atur nama, jabatan, dan foto pengurus OSIS.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                    <a href="#aspirasi" class="feature-card">
+                        <span class="feature-icon pink">✉</span>
+                        <div>
+                            <h4>Aspirasi Siswa</h4>
+                            <p>Lihat pesan, saran, dan masukan siswa.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                    <a href="#pengaturan" class="feature-card">
+                        <span class="feature-icon teal">⚙</span>
+                        <div>
+                            <h4>Pengaturan</h4>
+                            <p>Pengaturan sistem dan akun administrator.</p>
+                        </div>
+                        <span class="feature-arrow">›</span>
+                    </a>
+
+                </div>
+            </section>
+
+            <section class="content-panel module-panel" id="berita">
+                <h3>Berita & Pengumuman</h3>
+                <p>Tempat mengelola berita dan pengumuman OSIS.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <section class="content-panel module-panel" id="agenda">
+                <h3>Agenda Kegiatan</h3>
+                <p>Tempat mengelola jadwal kegiatan OSIS.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <section class="content-panel module-panel" id="galeri">
+                <h3>Galeri Kegiatan</h3>
+                <p>Tempat mengelola foto dan dokumentasi kegiatan.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <section class="content-panel module-panel" id="pengurus">
+                <h3>Struktur Pengurus OSIS</h3>
+                <p>Tempat mengelola data dan foto pengurus.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <section class="content-panel module-panel" id="aspirasi">
+                <h3>Aspirasi Siswa</h3>
+                <p>Tempat melihat dan mengelola aspirasi siswa.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <section class="content-panel module-panel" id="pengaturan">
+                <h3>Pengaturan</h3>
+                <p>Tempat mengelola pengaturan dan akun administrator.</p>
+                <span class="module-status">Tahap berikutnya</span>
+            </section>
+
+            <footer class="admin-footer">
+                © 2026 OSIS SMU DuMay. Administrator Panel.
+            </footer>
+
+        </main>
+    </div>
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -67,5 +200,6 @@
             });
         }
     </script>
+
 </body>
 </html>
