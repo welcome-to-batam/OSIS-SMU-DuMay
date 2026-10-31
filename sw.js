@@ -1,4 +1,4 @@
-const CACHE_NAME = 'osis-dumay-v8';
+const CACHE_NAME = 'osis-dumay-v9';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   './logo-osis.jpg' // Tambahkan baris ini
   './icon-192.png', // Tambahkan ikon baru Anda di sini
   './icon-512.png'  // Tambahkan ikon baru Anda di sini
+  './banner.png' // Daftarkan berkas banner di sini
 ];
 
 self.addEventListener('install', (e) => {
