@@ -150,11 +150,88 @@
                 </div>
             </section>
 
-            <section class="content-panel module-panel" id="berita">
-                <h3>Berita & Pengumuman</h3>
-                <p>Tempat mengelola berita dan pengumuman OSIS.</p>
-                <span class="module-status">Tahap berikutnya</span>
-            </section>
+            
+<section class="content-panel news-management" id="berita">
+
+    <div class="news-heading">
+        <div>
+            <span class="page-label">MANAJEMEN KONTEN</span>
+            <h3>Berita & Pengumuman</h3>
+            <p>Buat dan kelola informasi terbaru untuk seluruh siswa.</p>
+        </div>
+    </div>
+
+    <div class="news-form-card">
+        <h3>✏️ Tulis Berita Baru</h3>
+        <p class="form-description">Lengkapi informasi berikut untuk membuat berita.</p>
+
+        <form id="newsForm">
+
+            <div class="form-group">
+                <label for="newsTitle">Judul Berita</label>
+                <input
+                    type="text"
+                    id="newsTitle"
+                    placeholder="Contoh: Kegiatan Bakti Sosial OSIS"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="newsCategory">Kategori Berita</label>
+                <select id="newsCategory" required>
+                    <option value="">Pilih kategori</option>
+                    <option value="Pengumuman">Pengumuman</option>
+                    <option value="Kegiatan OSIS">Kegiatan OSIS</option>
+                    <option value="Prestasi">Prestasi</option>
+                    <option value="Informasi Sekolah">Informasi Sekolah</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="newsContent">Isi Berita</label>
+                <textarea
+                    id="newsContent"
+                    rows="7"
+                    placeholder="Tuliskan isi berita secara lengkap..."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="newsImage">Foto Berita</label>
+                <input
+                    type="file"
+                    id="newsImage"
+                    accept="image/*">
+                <small>Format gambar: JPG, PNG, atau WEBP.</small>
+            </div>
+
+            <div class="news-form-actions">
+                <button type="reset" class="btn-reset">Reset</button>
+                <button type="button" class="btn-publish" disabled>
+                    Publikasikan Berita
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="news-list-card">
+        <div class="news-list-heading">
+            <div>
+                <h3>Daftar Berita</h3>
+                <p>Berita yang telah diterbitkan.</p>
+            </div>
+            <span class="news-count">0 Berita</span>
+        </div>
+
+        <div class="news-empty">
+            <div class="empty-icon">📰</div>
+            <h4>Belum Ada Berita</h4>
+            <p>Berita yang diterbitkan nantinya akan muncul di bagian ini.</p>
+        </div>
+    </div>
+
+</section>
 
             <section class="content-panel module-panel" id="agenda">
                 <h3>Agenda Kegiatan</h3>
