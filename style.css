@@ -122,3 +122,39 @@ footer {
     margin-top: 20px;
     margin-bottom: 65px; 
 }
+
+/* ... kode css sebelumnya tetap dipertahankan ... */
+
+/* --- PENYESUAIAN PADA TAG MAIN --- */
+main {
+    padding: 0 0 20px 0; /* Menghilangkan padding samping default pada pembungkus utama */
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Memastikan konten selain banner tetap memiliki jarak aman di kanan-kiri */
+main .card {
+    margin: 20px; 
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* --- ATURAN BANNER FULL WIDTH --- */
+.banner-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    line-height: 0; /* Menghilangkan spasi kosong tipis di bawah gambar */
+}
+
+.main-banner {
+    width: 100%;
+    height: auto;
+    max-height: 450px; /* Batasi tinggi maksimal agar gambar potret tidak terlalu memakan layar di desktop */
+    object-fit: cover; /* Memotong gambar secara proporsional jika melewati batas maksimal */
+    display: block;
+}
+
