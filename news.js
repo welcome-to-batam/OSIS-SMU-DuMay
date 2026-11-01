@@ -1,8 +1,12 @@
+
 import { db, auth } from "./firebase.js";
+
 import {
   ref,
   push,
   onValue,
+  update,
+  remove,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
@@ -15,21 +19,15 @@ const publishButton = document.querySelector(".btn-publish");
 const newsList = document.querySelector(".news-empty");
 const newsCount = document.querySelector(".news-count");
 
-// Mengubah foto menjadi Base64
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-
     reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(
-      new Error("Gagal membaca foto.")
-    );
-
+    reader.onerror = () => reject(new Error("Gagal membaca foto."));
     reader.readAsDataURL(file);
   });
 }
 
-// Mengamankan teks sebelum ditampilkan
 function escapeHTML(value) {
   return String(value || "").replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -40,8 +38,13 @@ function escapeHTML(value) {
   })[char]);
 }
 
-// Menampilkan berita dari Firebase
-if (form && publishButton) {
+function isAdmin() {
+  return auth.currentUser &&
+    auth.currentUser.uid === ADMIN_UID;
+}
+
+// MEMBACA DAN MENAMPILKAN BERITA
+if (form && publishButton && newsList) {
 
   publishButton.disabled = false;
 
@@ -53,10 +56,8 @@ if (form && publishButton) {
       newsCount.textContent = `${entries.length} Berita`;
     }
 
-    if (!newsList) return;
-
     if (entries.length === 0) {
-      newsList.textContent = "Belum ada berita.";
+      newsList.innerHTML = "Belum ada berita.";
       return;
     }
 
@@ -71,38 +72,57 @@ if (form && publishButton) {
         : "";
 
       return `
-        <div class="news-item">
+        <div class="news-item"
+             style="padding:15px;margin:12px 0;
+             border:1px solid #ddd;border-radius:12px;">
+
           <h3>${escapeHTML(news.judul)}</h3>
+
           <p>${escapeHTML(news.kategori)}</p>
+
           ${photo}
+
           <p>${escapeHTML(news.isi)}</p>
+
           <small>${escapeHTML(news.tanggal)}</small>
+
+          <div style="display:flex;gap:10px;margin-top:15px;">
+
+            <button type="button"
+              data-action="edit"
+              data-id="${escapeHTML(id)}"
+              style="padding:9px 16px;border:0;
+              border-radius:7px;background:#1976d2;color:white;">
+              Edit
+            </button>
+
+            <button type="button"
+              data-action="delete"
+              data-id="${escapeHTML(id)}"
+              style="padding:9px 16px;border:0;
+              border-radius:7px;background:#dc3545;color:white;">
+              Hapus
+            </button>
+
+          </div>
         </div>
       `;
     }).join("");
   });
 
-  // Tombol Publikasikan Berita
+  // MENAMBAHKAN BERITA BARU
   form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    if (!auth.currentUser ||
-        auth.currentUser.uid !== ADMIN_UID) {
+    if (!isAdmin()) {
       alert("Silakan login sebagai admin.");
       return;
     }
 
-    const judul = document.getElementById("newsTitle")
-      .value.trim();
-
-    const kategori = document.getElementById("newsCategory")
-      .value;
-
-    const isi = document.getElementById("newsContent")
-      .value.trim();
-
-    const foto = document.getElementById("newsImage")
-      .files[0];
+    const judul = document.getElementById("newsTitle").value.trim();
+    const kategori = document.getElementById("newsCategory").value;
+    const isi = document.getElementById("newsContent").value.trim();
+    const foto = document.getElementById("newsImage").files[0];
 
     if (!judul || !isi) {
       alert("Judul dan isi berita wajib diisi.");
@@ -115,13 +135,9 @@ if (form && publishButton) {
     try {
       let fotoBase64 = "";
 
-      // Kompres foto jika pengguna memilih foto
       if (foto) {
-
         if (foto.size > 15 * 1024 * 1024) {
-          throw new Error(
-            "Foto asli terlalu besar. Maksimal 15 MB."
-          );
+          throw new Error("Foto asli maksimal 15 MB.");
         }
 
         const compressed = await compressImage(foto, {
@@ -130,38 +146,111 @@ if (form && publishButton) {
           quality: 0.75
         });
 
-        // Batasi hasil kompresi maksimal 400 KB
         if (compressed.size > 400 * 1024) {
-          throw new Error(
-            "Ukuran foto setelah kompresi masih terlalu besar. Gunakan foto lain."
-          );
+          throw new Error("Hasil kompresi foto masih lebih dari 400 KB.");
         }
 
         fotoBase64 = await fileToBase64(compressed);
       }
 
-      publishButton.textContent = "Menyimpan berita...";
-
       await push(ref(db, "berita"), {
-        judul: judul,
-        kategori: kategori,
-        isi: isi,
-        fotoBase64: fotoBase64,
+        judul,
+        kategori,
+        isi,
+        fotoBase64,
         tanggal: new Date().toLocaleString("id-ID"),
         tanggalDibuat: serverTimestamp(),
         status: "terbit"
       });
 
       alert("Berita berhasil dipublikasikan!");
-
       form.reset();
 
     } catch (error) {
-      console.error("Kesalahan berita:", error);
+      console.error(error);
       alert("Gagal menyimpan berita: " + error.message);
     }
 
     publishButton.disabled = false;
     publishButton.textContent = "Publikasikan Berita";
+  });
+
+  // TOMBOL EDIT DAN HAPUS
+  newsList.addEventListener("click", async event => {
+
+    const button = event.target.closest("button[data-action]");
+
+    if (!button) return;
+
+    if (!isAdmin()) {
+      alert("Akses admin diperlukan.");
+      return;
+    }
+
+    const id = button.dataset.id;
+    const action = button.dataset.action;
+    const itemRef = ref(db, "berita/" + id);
+
+    if (action === "edit") {
+
+      const snapshot = await new Promise((resolve, reject) => {
+        onValue(itemRef, resolve, reject, { onlyOnce: true });
+      });
+
+      const news = snapshot.val();
+
+      if (!news) {
+        alert("Berita tidak ditemukan.");
+        return;
+      }
+
+      const judul = prompt("Edit judul berita:", news.judul);
+      if (judul === null) return;
+
+      const kategori = prompt("Edit kategori berita:", news.kategori);
+      if (kategori === null) return;
+
+      const isi = prompt("Edit isi berita:", news.isi);
+      if (isi === null) return;
+
+      if (!judul.trim() || !isi.trim()) {
+        alert("Judul dan isi berita tidak boleh kosong.");
+        return;
+      }
+
+      try {
+        await update(itemRef, {
+          judul: judul.trim(),
+          kategori: kategori.trim(),
+          isi: isi.trim(),
+          tanggal: new Date().toLocaleString("id-ID"),
+          terakhirDiubah: serverTimestamp()
+        });
+
+        alert("Berita berhasil diperbarui. Foto tetap tersimpan.");
+
+      } catch (error) {
+        console.error(error);
+        alert("Gagal mengedit berita: " + error.message);
+      }
+    }
+
+    if (action === "delete") {
+
+      const yakin = confirm(
+        "Yakin ingin menghapus berita ini beserta fotonya?"
+      );
+
+      if (!yakin) return;
+
+      try {
+        await remove(itemRef);
+        alert("Berita berhasil dihapus.");
+
+      } catch (error) {
+        console.error(error);
+        alert("Gagal menghapus berita: " + error.message);
+      }
+    }
   });
 }
