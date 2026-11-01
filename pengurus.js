@@ -207,7 +207,16 @@ onValue(ref(db, "pengurus"), snapshot => {
         </div>
       </div>
     `;
-  }).join("");
+    }).join("");
+
+}, error => {
+  console.error("Firebase Pengurus:", error);
+
+  pengurusList.innerHTML = `
+    <p style="color:#e74c3c;padding:15px;">
+      Gagal memuat data pengurus: ${escapeHTML(error.message)}
+    </p>
+  `;
 });
 
 // TAMBAH DAN EDIT PENGURUS
