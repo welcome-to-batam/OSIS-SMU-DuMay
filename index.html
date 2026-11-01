@@ -120,6 +120,103 @@
                 <span>Hubungi pengurus OSIS</span>
             </a>
         </div>
+
+        <!-- 4. Bagian Aspirasi Siswa -->
+<section class="aspirasi-section" id="aspirasi">
+
+    <div class="aspirasi-header">
+        <h2>💬 Aspirasi Siswa</h2>
+        <p>
+            Sampaikan ide, saran, kritik, dan harapanmu
+            untuk kemajuan sekolah kita.
+        </p>
+    </div>
+
+    <div class="aspirasi-notice">
+        <strong>📢 Aspirasi Terbuka</strong>
+        <p>
+            Nama, kelas, dan isi aspirasi yang kamu kirim
+            dapat dibaca oleh seluruh pengunjung.
+            Sampaikan aspirasi dengan sopan dan bertanggung jawab.
+        </p>
+    </div>
+
+    <div class="aspirasi-form-card">
+        <h3>Kirim Aspirasi</h3>
+
+        <form id="aspirasiForm">
+
+            <div class="form-group">
+                <label for="aspirasiNama">Nama Lengkap</label>
+                <input
+                    type="text"
+                    id="aspirasiNama"
+                    name="nama"
+                    placeholder="Masukkan nama lengkap"
+                    maxlength="80"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="aspirasiKelas">Kelas</label>
+                <input
+                    type="text"
+                    id="aspirasiKelas"
+                    name="kelas"
+                    placeholder="Contoh: XII IPA 1"
+                    maxlength="30"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="aspirasiKategori">Kategori Aspirasi</label>
+                <select
+                    id="aspirasiKategori"
+                    name="kategori"
+                    required
+                >
+                    <option value="">Pilih kategori aspirasi</option>
+                    <option value="Saran">Saran</option>
+                    <option value="Kritik">Kritik</option>
+                    <option value="Fasilitas Sekolah">Fasilitas Sekolah</option>
+                    <option value="Kegiatan OSIS">Kegiatan OSIS</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pembelajaran">Pembelajaran</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="aspirasiIsi">Isi Aspirasi</label>
+                <textarea
+                    id="aspirasiIsi"
+                    name="isi"
+                    rows="5"
+                    maxlength="1500"
+                    placeholder="Tuliskan aspirasi, saran, atau pendapatmu di sini..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" id="btnKirimAspirasi">
+                Kirim Aspirasi
+            </button>
+
+        </form>
+    </div>
+
+    <div class="aspirasi-public-list">
+        <h3>📋 Aspirasi Siswa</h3>
+        <p>Berikut aspirasi yang telah disampaikan oleh siswa.</p>
+
+        <div id="aspirasiPublikList">
+            <p>Memuat aspirasi siswa...</p>
+        </div>
+    </div>
+
+</section>
     </main>
 
     <footer>
