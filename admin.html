@@ -233,11 +233,83 @@
 
 </section>
 
-            <section class="content-panel module-panel" id="agenda">
-                <h3>Agenda Kegiatan</h3>
-                <p>Tempat mengelola jadwal kegiatan OSIS.</p>
-                <span class="module-status">Tahap berikutnya</span>
-            </section>
+<section class="content-panel module-panel" id="agenda">
+
+  <div class="module-heading">
+    <div>
+      <h3>Agenda Kegiatan</h3>
+      <p>Kelola jadwal dan kegiatan OSIS SMU DuMay.</p>
+    </div>
+    <span class="module-status">Aktif</span>
+  </div>
+
+  <div class="agenda-summary">
+    <div class="agenda-summary-card">
+      <span>Total Agenda</span>
+      <strong class="agenda-count">0</strong>
+    </div>
+  </div>
+
+  <div class="agenda-form-panel">
+    <h4>Tambah Agenda Baru</h4>
+
+    <form id="agendaForm">
+
+      <div class="form-group">
+        <label for="agendaTitle">Nama Kegiatan</label>
+        <input type="text" id="agendaTitle"
+          placeholder="Contoh: Bakti Sosial OSIS" required>
+      </div>
+
+      <div class="form-group">
+        <label for="agendaCategory">Kategori</label>
+        <select id="agendaCategory" required>
+          <option value="Kegiatan OSIS">Kegiatan OSIS</option>
+          <option value="Pendidikan">Pendidikan</option>
+          <option value="Olahraga">Olahraga</option>
+          <option value="Sosial">Sosial</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="agendaDate">Tanggal Kegiatan</label>
+        <input type="date" id="agendaDate" required>
+      </div>
+
+      <div class="form-group">
+        <label for="agendaTime">Waktu Kegiatan</label>
+        <input type="time" id="agendaTime" required>
+      </div>
+
+      <div class="form-group">
+        <label for="agendaLocation">Lokasi Kegiatan</label>
+        <input type="text" id="agendaLocation"
+          placeholder="Masukkan lokasi kegiatan" required>
+      </div>
+
+      <div class="form-group">
+        <label for="agendaDescription">Deskripsi Kegiatan</label>
+        <textarea id="agendaDescription" rows="4"
+          placeholder="Tuliskan keterangan kegiatan..." required></textarea>
+      </div>
+
+      <button type="submit" id="agendaSubmit"
+        class="btn-publish">
+        Simpan Agenda
+      </button>
+
+    </form>
+  </div>
+
+  <div class="agenda-list-panel">
+    <h4>Daftar Agenda</h4>
+    <div id="agendaList">
+      <p>Belum ada agenda kegiatan.</p>
+    </div>
+  </div>
+
+</section>
 
             <section class="content-panel module-panel" id="galeri">
                 <h3>Galeri Kegiatan</h3>
