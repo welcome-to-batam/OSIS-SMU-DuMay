@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007bff">
+
+    <title>Aspirasi Siswa - OSIS SMU DuMay</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f1f5f9;
+        }
+
+        .aspirasi-page-header {
+            background: #123f66;
+            color: white;
+            padding: 18px 20px 22px;
+        }
+
+        .aspirasi-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .aspirasi-page-header h1 {
+            font-size: 24px;
+            margin: 0 0 8px;
+        }
+
+        .aspirasi-page-header p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+            color: #dbeafe;
+        }
+
+        .aspirasi-page-main {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 10px 0 35px;
+            min-height: 70vh;
+        }
+
+        .aspirasi-section {
+            margin: 0;
+        }
+
+        .aspirasi-section > .aspirasi-header {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .aspirasi-page-header {
+                padding-left: max(25px, calc((100% - 750px) / 2));
+                padding-right: max(25px, calc((100% - 750px) / 2));
+            }
+
+            .aspirasi-page-main {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="aspirasi-page-header">
+
+        <a href="index.html" class="aspirasi-back">
+            ← Kembali ke Beranda
+        </a>
+
+        <h1>💬 Aspirasi Siswa</h1>
+
+        <p>
+            Suarakan pendapatmu, berikan saran,
+            dan ikut membangun sekolah menjadi lebih baik.
+        </p>
+
+    </header>
+
+    <main class="aspirasi-page-main">
+
+        <section class="aspirasi-section" id="aspirasi">
+
+            <div class="aspirasi-header">
+                <h2>💬 Aspirasi Siswa</h2>
+                <p>
+                    Tempat menyampaikan ide, saran,
+                    kritik, dan harapan siswa.
+                </p>
+            </div>
+
+            <div class="aspirasi-notice">
+                <strong>📢 Aspirasi Terbuka</strong>
+                <p>
+                    Nama, kelas, dan isi aspirasi yang kamu kirim
+                    dapat dibaca oleh seluruh pengunjung.
+                    Sampaikan aspirasi dengan sopan dan bertanggung jawab.
+                </p>
+            </div>
+
+            <div class="aspirasi-form-card">
+
+                <h3>Kirim Aspirasi</h3>
+
+                <form id="aspirasiForm">
+
+                    <div class="form-group">
+                        <label for="aspirasiNama">Nama Lengkap</label>
+                        <input
+                            type="text"
+                            id="aspirasiNama"
+                            name="nama"
+                            placeholder="Masukkan nama lengkap"
+                            maxlength="80"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aspirasiKelas">Kelas</label>
+                        <input
+                            type="text"
+                            id="aspirasiKelas"
+                            name="kelas"
+                            placeholder="Contoh: XII IPA 1"
+                            maxlength="30"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aspirasiKategori">Kategori Aspirasi</label>
+
+                        <select
+                            id="aspirasiKategori"
+                            name="kategori"
+                            required
+                        >
+                            <option value="">Pilih kategori aspirasi</option>
+                            <option value="Saran">Saran</option>
+                            <option value="Kritik">Kritik</option>
+                            <option value="Fasilitas Sekolah">Fasilitas Sekolah</option>
+                            <option value="Kegiatan OSIS">Kegiatan OSIS</option>
+                            <option value="Kebersihan">Kebersihan</option>
+                            <option value="Pembelajaran">Pembelajaran</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aspirasiIsi">Isi Aspirasi</label>
+
+                        <textarea
+                            id="aspirasiIsi"
+                            name="isi"
+                            rows="5"
+                            maxlength="1500"
+                            placeholder="Tuliskan aspirasi, saran, atau pendapatmu..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" id="btnKirimAspirasi">
+                        Kirim Aspirasi
+                    </button>
+
+                </form>
+            </div>
+
+            <div class="aspirasi-public-list">
+
+                <h3>📋 Aspirasi Siswa</h3>
+
+                <p>
+                    Aspirasi yang telah disampaikan oleh siswa.
+                </p>
+
+                <div id="aspirasiPublikList">
+                    <p>Memuat aspirasi siswa...</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OSIS SMU DuMay</p>
+    </footer>
+
+    <script
+        type="module"
+        src="./aspirasi-public.js"
+    ></script>
+
+</body>
+</html>
