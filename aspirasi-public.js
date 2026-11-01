@@ -109,6 +109,7 @@ onValue(aspirasiRef, (snapshot) => {
     dataAspirasi.forEach((data) => {
         const kartu = document.createElement("article");
         kartu.className = "aspirasi-card";
+        kartu.dataset.id = data.id;
 
         kartu.innerHTML = `
             <div class="aspirasi-card-top">
