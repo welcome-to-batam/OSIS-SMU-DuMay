@@ -381,11 +381,78 @@
 
 </section>
 
-            <section class="content-panel module-panel" id="pengurus">
-                <h3>Struktur Pengurus OSIS</h3>
-                <p>Tempat mengelola data dan foto pengurus.</p>
-                <span class="module-status">Tahap berikutnya</span>
-            </section>
+            
+<section class="content-panel module-panel" id="pengurus">
+    <div class="module-heading">
+        <div>
+            <h3>Struktur Pengurus OSIS</h3>
+            <p>Kelola data, jabatan, kelas, dan foto pengurus OSIS.</p>
+        </div>
+        <span class="module-status">Data Pengurus</span>
+    </div>
+
+    <div class="agenda-summary">
+        <div class="agenda-summary-card">
+            <span>Total Pengurus</span>
+            <strong class="pengurus-count">0</strong>
+        </div>
+    </div>
+
+    <div class="agenda-form-panel">
+        <h4 id="pengurusFormTitle">Tambah Pengurus</h4>
+
+        <form id="pengurusForm">
+            <div class="form-group">
+                <label for="pengurusNama">Nama Lengkap</label>
+                <input type="text" id="pengurusNama"
+                    placeholder="Masukkan nama lengkap" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pengurusJabatan">Jabatan</label>
+                <input type="text" id="pengurusJabatan"
+                    placeholder="Contoh: Ketua OSIS" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pengurusKelas">Kelas</label>
+                <input type="text" id="pengurusKelas"
+                    placeholder="Contoh: XII IPA 1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pengurusPeriode">Periode Kepengurusan</label>
+                <input type="text" id="pengurusPeriode"
+                    placeholder="Contoh: 2026/2027" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pengurusFoto">Foto Pengurus</label>
+                <input type="file" id="pengurusFoto"
+                    accept="image/*">
+                <small>Format gambar, maksimal 15 MB sebelum dikompres.</small>
+                <img id="pengurusPreview" alt="Pratinjau foto pengurus"
+                    style="display:none; width:120px; height:120px; object-fit:cover; border-radius:12px; margin-top:10px;">
+            </div>
+
+            <button type="submit" id="pengurusSubmit" class="btn-publish">
+                Simpan Pengurus
+            </button>
+
+            <button type="button" id="pengurusCancel"
+                style="display:none;">
+                Batal Edit
+            </button>
+        </form>
+    </div>
+
+    <div class="agenda-list-panel">
+        <h4>Daftar Pengurus OSIS</h4>
+        <div id="pengurusList">
+            <p>Memuat data pengurus...</p>
+        </div>
+    </div>
+</section>
 
             <section class="content-panel module-panel" id="aspirasi">
                 <h3>Aspirasi Siswa</h3>
