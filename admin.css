@@ -764,3 +764,101 @@ body.admin-body {
 }
 
 
+/* ADMIN ASPIRASI SISWA */
+
+.admin-aspirasi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+.admin-aspirasi-heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.admin-aspirasi-heading strong {
+    display: block;
+    color: #1e293b;
+    font-size: 15px;
+}
+
+.admin-aspirasi-heading span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.admin-aspirasi-heading small {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.admin-aspirasi-category {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.admin-aspirasi-content {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    margin: 0 0 16px;
+}
+
+.admin-aspirasi-actions {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-aspirasi-actions label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.aspirasi-status-select {
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #1e293b;
+    font-size: 13px;
+}
+
+.btn-hapus-aspirasi {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #fee2e2;
+    color: #b91c1c;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-hapus-aspirasi:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
