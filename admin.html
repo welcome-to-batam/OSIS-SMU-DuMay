@@ -311,11 +311,75 @@
 
 </section>
 
-            <section class="content-panel module-panel" id="galeri">
-                <h3>Galeri Kegiatan</h3>
-                <p>Tempat mengelola foto dan dokumentasi kegiatan.</p>
-                <span class="module-status">Tahap berikutnya</span>
-            </section>
+            
+<section class="content-panel module-panel" id="galeri">
+
+  <div class="module-heading">
+    <div>
+      <h3>Galeri Kegiatan</h3>
+      <p>Kelola foto dan dokumentasi kegiatan OSIS SMU DuMay.</p>
+    </div>
+    <span class="module-status">Aktif</span>
+  </div>
+
+  <div class="agenda-summary">
+    <div class="agenda-summary-card">
+      <span>Total Foto</span>
+      <strong id="galleryCount">0</strong>
+    </div>
+  </div>
+
+  <div class="agenda-form-panel">
+    <h4>Upload Dokumentasi Baru</h4>
+
+    <form id="galleryForm">
+
+      <div class="form-group">
+        <label for="galleryTitle">Judul Kegiatan</label>
+        <input type="text" id="galleryTitle"
+          placeholder="Contoh: Bakti Sosial OSIS" required>
+      </div>
+
+      <div class="form-group">
+        <label for="galleryDescription">Keterangan Foto</label>
+        <textarea id="galleryDescription" rows="4"
+          placeholder="Tuliskan keterangan dokumentasi..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="galleryImage">Pilih Foto</label>
+        <input type="file" id="galleryImage"
+          accept="image/*" required>
+        <small>Foto akan dikompres otomatis sebelum disimpan.</small>
+      </div>
+
+      <div class="form-group">
+        <label>Pratinjau Foto</label>
+        <img id="galleryPreview"
+          alt="Pratinjau dokumentasi"
+          style="display:none;width:100%;max-height:250px;object-fit:contain;border-radius:12px;background:#f1f5f9;">
+      </div>
+
+      <button type="submit" id="gallerySubmit"
+        class="btn-publish">
+        Simpan Dokumentasi
+      </button>
+
+    </form>
+  </div>
+
+  <div class="agenda-list-panel">
+    <h4>Daftar Dokumentasi</h4>
+
+    <div id="galleryList"
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">
+
+      <p>Belum ada dokumentasi foto.</p>
+
+    </div>
+  </div>
+
+</section>
 
             <section class="content-panel module-panel" id="pengurus">
                 <h3>Struktur Pengurus OSIS</h3>
