@@ -1,4 +1,4 @@
-const CACHE_NAME = 'osis-dumay-v24';
+const CACHE_NAME = 'osis-dumay-v25';
 const ASSETS = [
   './',
   './index.html',
