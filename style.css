@@ -288,3 +288,231 @@ main .card {
     height: 18px;
     stroke: #38a169; /* Warna hijau khas WhatsApp/chat */
 }
+
+
+/* ==================================
+   ASPIRASI SISWA
+================================== */
+
+.aspirasi-section {
+    padding: 20px 15px 30px;
+    margin: 25px 0;
+    scroll-margin-top: 20px;
+}
+
+.aspirasi-header {
+    margin-bottom: 18px;
+}
+
+.aspirasi-header h2 {
+    color: #172554;
+    font-size: 22px;
+    margin: 0 0 8px;
+}
+
+.aspirasi-header p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.aspirasi-notice {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.aspirasi-notice strong {
+    display: block;
+    color: #1d4ed8;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.aspirasi-notice p {
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.aspirasi-form-card {
+    background: #ffffff;
+    padding: 20px 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.07);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 28px;
+}
+
+.aspirasi-form-card h3 {
+    color: #1e293b;
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+.aspirasi-form-card .form-group {
+    margin-bottom: 16px;
+}
+
+.aspirasi-form-card label {
+    display: block;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.aspirasi-form-card input,
+.aspirasi-form-card select,
+.aspirasi-form-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.aspirasi-form-card input:focus,
+.aspirasi-form-card select:focus,
+.aspirasi-form-card textarea:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.aspirasi-form-card textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+#btnKirimAspirasi {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btnKirimAspirasi:hover {
+    background: #1d4ed8;
+}
+
+#btnKirimAspirasi:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.aspirasi-public-list h3 {
+    color: #172554;
+    font-size: 19px;
+    margin: 0 0 7px;
+}
+
+.aspirasi-public-list > p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.aspirasi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+.aspirasi-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.aspirasi-card-top strong {
+    color: #1e293b;
+    font-size: 15px;
+}
+
+.aspirasi-card-top span {
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.aspirasi-kategori {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.aspirasi-card-isi {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    margin: 0 0 14px;
+}
+
+.aspirasi-card-bottom {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 11px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.aspirasi-card-bottom span {
+    color: #15803d;
+    font-weight: 700;
+}
+
+.aspirasi-card-bottom small {
+    color: #94a3b8;
+}
+
+@media (max-width: 480px) {
+    .aspirasi-section {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .aspirasi-form-card {
+        padding: 17px 13px;
+    }
+
+    .aspirasi-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
