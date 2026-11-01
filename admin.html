@@ -270,6 +270,64 @@
         </main>
     </div>
 
+<!-- MODAL EDIT BERITA -->
+<div class="edit-modal" id="editModal">
+  <div class="edit-modal-content">
+
+    <div class="edit-modal-header">
+      <div>
+        <span class="page-label">MANAJEMEN KONTEN</span>
+        <h2>Edit Berita</h2>
+        <p>Perbarui informasi berita OSIS SMU DuMay.</p>
+      </div>
+      <button type="button" id="closeEditModal"
+        class="edit-close">&times;</button>
+    </div>
+
+    <form id="editNewsForm">
+      <div class="edit-form-group">
+        <label for="editTitle">Judul Berita</label>
+        <input type="text" id="editTitle" required>
+      </div>
+
+      <div class="edit-form-group">
+        <label for="editCategory">Kategori Berita</label>
+        <select id="editCategory" required>
+          <option value="Pengumuman">Pengumuman</option>
+          <option value="Kegiatan OSIS">Kegiatan OSIS</option>
+          <option value="Prestasi">Prestasi</option>
+          <option value="Informasi Sekolah">Informasi Sekolah</option>
+        </select>
+      </div>
+
+      <div class="edit-form-group">
+        <label for="editContent">Isi Berita</label>
+        <textarea id="editContent" rows="7" required></textarea>
+      </div>
+
+      <div class="edit-form-group">
+        <label>Foto Berita Saat Ini</label>
+        <img id="editPhotoPreview" alt="Pratinjau foto berita">
+      </div>
+
+      <div class="edit-form-group">
+        <label for="editImage">Ganti Foto (Opsional)</label>
+        <input type="file" id="editImage" accept="image/*">
+        <small>Kosongkan jika ingin tetap menggunakan foto lama.</small>
+      </div>
+
+      <div class="edit-modal-actions">
+        <button type="button" id="cancelEdit"
+          class="edit-cancel">Batal</button>
+        <button type="submit" id="saveEdit"
+          class="edit-save">Simpan Perubahan</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<!-- AKHIR MODAL EDIT BERITA -->
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
