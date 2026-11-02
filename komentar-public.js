@@ -18,6 +18,8 @@ const daftarKomentar = document.getElementById("daftarKomentar");
 let semuaKomentar = {};
 let semuaBalasan = {};
 let semuaReaksiKomentar = {};
+let semuaReaksiBalasan = {};
+let semuaTanggapan = {};
 
 function aman(teks) {
     return String(teks ?? "").replace(/[&<>"']/g, karakter => ({
@@ -96,13 +98,13 @@ if (!aspirasiId) {
         `;
     });
 
-    // Membaca komentar
+    // Membaca komentar utama
     onValue(ref(db, `komentarAspirasi/${aspirasiId}`), snapshot => {
         semuaKomentar = snapshot.val() || {};
         tampilkanKomentar();
     });
 
-    // Membaca balasan
+    // Membaca balasan komentar
     onValue(ref(db, `balasanAspirasi/${aspirasiId}`), snapshot => {
         semuaBalasan = snapshot.val() || {};
         tampilkanKomentar();
@@ -111,6 +113,18 @@ if (!aspirasiId) {
     // Membaca reaksi komentar
     onValue(ref(db, `reaksiKomentar/${aspirasiId}`), snapshot => {
         semuaReaksiKomentar = snapshot.val() || {};
+        tampilkanKomentar();
+    });
+
+    // Membaca reaksi balasan
+    onValue(ref(db, `reaksiBalasanAspirasi/${aspirasiId}`), snapshot => {
+        semuaReaksiBalasan = snapshot.val() || {};
+        tampilkanKomentar();
+    });
+
+    // Membaca tanggapan terhadap balasan
+    onValue(ref(db, `tanggapanBalasanAspirasi/${aspirasiId}`), snapshot => {
+        semuaTanggapan = snapshot.val() || {};
         tampilkanKomentar();
     });
 }
@@ -145,8 +159,7 @@ function tampilkanKomentar() {
     }
 
     daftar.forEach(item => {
-        const balasan =
-            semuaBalasan[item.id] || {};
+        const balasan = semuaBalasan[item.id] || {};
 
         const daftarBalasan = Object.entries(balasan)
             .map(([id, data]) => ({ id, ...data }))
@@ -154,9 +167,7 @@ function tampilkanKomentar() {
                 (a.tanggalDibuat || 0) - (b.tanggalDibuat || 0)
             );
 
-        const reaksi =
-            semuaReaksiKomentar[item.id] || {};
-
+        const reaksi = semuaReaksiKomentar[item.id] || {};
         const jumlahReaksi = hitungReaksi(reaksi);
         const reaksiSaya = reaksi[pengunjungID]?.jenis || "";
 
@@ -196,6 +207,7 @@ function tampilkanKomentar() {
                     <button
                         type="button"
                         class="tombol-balas"
+                        data-target="komentar"
                         data-komentar="${aman(item.id)}">
                         Balas (${daftarBalasan.length})
                     </button>
@@ -204,9 +216,29 @@ function tampilkanKomentar() {
                 <div class="daftar-balasan">
         `;
 
+        // Menampilkan setiap balasan
         daftarBalasan.forEach(jawaban => {
+            const reaksiJawaban =
+                semuaReaksiBalasan[item.id]?.[jawaban.id] || {};
+
+            const jumlahReaksiJawaban =
+                hitungReaksi(reaksiJawaban);
+
+            const reaksiJawabanSaya =
+                reaksiJawaban[pengunjungID]?.jenis || "";
+
+            const tanggapan =
+                semuaTanggapan[item.id]?.[jawaban.id] || {};
+
+            const daftarTanggapan = Object.entries(tanggapan)
+                .map(([id, data]) => ({ id, ...data }))
+                .sort((a, b) =>
+                    (a.tanggalDibuat || 0) - (b.tanggalDibuat || 0)
+                );
+
             html += `
                 <div class="balasan-item">
+
                     <div class="komentar-identitas">
                         <strong>${aman(jawaban.nama)}</strong>
                         <span>${aman(jawaban.kelas)}</span>
@@ -219,6 +251,67 @@ function tampilkanKomentar() {
                     <small class="komentar-waktu">
                         ${waktuIndonesia(jawaban.tanggalDibuat)}
                     </small>
+
+                    <div class="interaksi-komentar">
+                        <button
+                            type="button"
+                            class="tombol-reaksi-balasan ${reaksiJawabanSaya === "suka" ? "aktif" : ""}"
+                            data-komentar="${aman(item.id)}"
+                            data-balasan="${aman(jawaban.id)}"
+                            data-jenis="suka">
+                            👍 ${jumlahReaksiJawaban.suka}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="tombol-reaksi-balasan ${reaksiJawabanSaya === "tidak suka" ? "aktif" : ""}"
+                            data-komentar="${aman(item.id)}"
+                            data-balasan="${aman(jawaban.id)}"
+                            data-jenis="tidak suka">
+                            👎 ${jumlahReaksiJawaban.tidakSuka}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="tombol-balas"
+                            data-target="balasan"
+                            data-komentar="${aman(item.id)}"
+                            data-balasan="${aman(jawaban.id)}">
+                            Balas (${daftarTanggapan.length})
+                        </button>
+                    </div>
+
+                    <div class="daftar-tanggapan">
+            `;
+
+            // Menampilkan tanggapan terhadap balasan
+            daftarTanggapan.forEach(tanggapanItem => {
+                html += `
+                    <div class="tanggapan-item">
+                        <div class="komentar-identitas">
+                            <strong>${aman(tanggapanItem.nama)}</strong>
+                            <span>${aman(tanggapanItem.kelas)}</span>
+                        </div>
+
+                        <p class="komentar-isi">
+                            ${aman(tanggapanItem.isi).replace(/\n/g, "<br>")}
+                        </p>
+
+                        <small class="komentar-waktu">
+                            ${waktuIndonesia(tanggapanItem.tanggalDibuat)}
+                        </small>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+
+                    <div
+                        class="tempat-form-tanggapan"
+                        id="formTanggapan-${aman(item.id)}-${aman(jawaban.id)}">
+                    </div>
+
                 </div>
             `;
         });
@@ -226,8 +319,10 @@ function tampilkanKomentar() {
         html += `
                 </div>
 
-                <div class="tempat-form-balasan"
-                     id="formBalasan-${aman(item.id)}"></div>
+                <div
+                    class="tempat-form-balasan"
+                    id="formBalasan-${aman(item.id)}">
+                </div>
 
             </article>
         `;
@@ -268,15 +363,26 @@ function tampilkanKomentar() {
     daftarKomentar.innerHTML = html;
 }
 
-// Membuka form balasan hanya saat tombol Balas ditekan
+// Membuka form balasan atau tanggapan
 daftarKomentar.addEventListener("click", event => {
     const tombol = event.target.closest(".tombol-balas");
     if (!tombol) return;
 
+    const target = tombol.dataset.target;
     const komentarId = tombol.dataset.komentar;
-    const tempat = document.getElementById(
-        `formBalasan-${komentarId}`
-    );
+    const balasanId = tombol.dataset.balasan;
+
+    let tempat;
+
+    if (target === "balasan") {
+        tempat = document.getElementById(
+            `formTanggapan-${komentarId}-${balasanId}`
+        );
+    } else {
+        tempat = document.getElementById(
+            `formBalasan-${komentarId}`
+        );
+    }
 
     if (!tempat) return;
 
@@ -285,9 +391,14 @@ daftarKomentar.addEventListener("click", event => {
         return;
     }
 
+    const kelasForm = target === "balasan"
+        ? "form-tanggapan"
+        : "form-balasan";
+
     tempat.innerHTML = `
-        <form class="form-balasan"
-              data-komentar="${aman(komentarId)}">
+        <form class="${kelasForm}"
+              data-komentar="${aman(komentarId)}"
+              data-balasan="${aman(balasanId || "")}">
 
             <input
                 type="text"
@@ -307,25 +418,28 @@ daftarKomentar.addEventListener("click", event => {
 
             <textarea
                 name="isi"
-                placeholder="Tulis balasan..."
+                placeholder="${target === "balasan" ? "Tulis tanggapan..." : "Tulis balasan..."}"
                 maxlength="1000"
                 rows="2"
                 required
             ></textarea>
 
-            <button type="submit">Kirim Balasan</button>
+            <button type="submit">
+                ${target === "balasan" ? "Kirim Tanggapan" : "Kirim Balasan"}
+            </button>
         </form>
     `;
 });
 
-// Mengirim komentar dan balasan
+// Mengirim komentar, balasan, dan tanggapan
 daftarKomentar.addEventListener("submit", async event => {
     const form = event.target;
 
+    const isTanggapan = form.matches(".form-tanggapan");
     const isBalasan = form.matches(".form-balasan");
     const isKomentar = form.id === "formKomentarBaru";
 
-    if (!isBalasan && !isKomentar) return;
+    if (!isTanggapan && !isBalasan && !isKomentar) return;
 
     event.preventDefault();
 
@@ -343,15 +457,24 @@ daftarKomentar.addEventListener("submit", async event => {
     tombol.textContent = "Mengirim...";
 
     try {
-        const lokasi = isBalasan
-            ? push(ref(
+        let lokasi;
+
+        if (isTanggapan) {
+            lokasi = push(ref(
+                db,
+                `tanggapanBalasanAspirasi/${aspirasiId}/${form.dataset.komentar}/${form.dataset.balasan}`
+            ));
+        } else if (isBalasan) {
+            lokasi = push(ref(
                 db,
                 `balasanAspirasi/${aspirasiId}/${form.dataset.komentar}`
-            ))
-            : push(ref(
+            ));
+        } else {
+            lokasi = push(ref(
                 db,
                 `komentarAspirasi/${aspirasiId}`
             ));
+        }
 
         await set(lokasi, {
             nama,
@@ -360,51 +483,69 @@ daftarKomentar.addEventListener("submit", async event => {
             tanggalDibuat: serverTimestamp()
         });
 
-        alert(isBalasan
-            ? "Balasan berhasil dikirim!"
-            : "Komentar berhasil dikirim!"
+        alert(
+            isTanggapan
+                ? "Tanggapan berhasil dikirim!"
+                : isBalasan
+                    ? "Balasan berhasil dikirim!"
+                    : "Komentar berhasil dikirim!"
         );
 
         form.reset();
 
-        if (isBalasan) {
+        if (isBalasan || isTanggapan) {
             form.remove();
         }
 
     } catch (error) {
-        console.error("Gagal mengirim komentar:", error);
+        console.error("Gagal mengirim pesan:", error);
         alert("Pesan gagal dikirim. Periksa koneksi atau aturan Firebase.");
     } finally {
         if (tombol.isConnected) {
             tombol.disabled = false;
-            tombol.textContent = isBalasan
-                ? "Kirim Balasan"
-                : "Kirim Komentar";
+            tombol.textContent = isTanggapan
+                ? "Kirim Tanggapan"
+                : isBalasan
+                    ? "Kirim Balasan"
+                    : "Kirim Komentar";
         }
     }
 });
 
-// Mengirim atau mengubah reaksi komentar
+// Mengirim atau mengubah reaksi komentar dan balasan
 daftarKomentar.addEventListener("click", async event => {
-    const tombol = event.target.closest(".tombol-reaksi-komentar");
+    const tombol = event.target.closest(
+        ".tombol-reaksi-komentar, .tombol-reaksi-balasan"
+    );
+
     if (!tombol) return;
 
     const komentarId = tombol.dataset.komentar;
+    const balasanId = tombol.dataset.balasan;
     const jenis = tombol.dataset.jenis;
 
     if (!komentarId || !["suka", "tidak suka"].includes(jenis)) {
         return;
     }
 
+    const isReaksiBalasan =
+        tombol.classList.contains("tombol-reaksi-balasan");
+
+    const reaksiLama = isReaksiBalasan
+        ? semuaReaksiBalasan[komentarId]?.[balasanId]?.[pengunjungID]?.jenis || ""
+        : semuaReaksiKomentar[komentarId]?.[pengunjungID]?.jenis || "";
+
+    const lokasi = isReaksiBalasan
+        ? ref(
+            db,
+            `reaksiBalasanAspirasi/${aspirasiId}/${komentarId}/${balasanId}/${pengunjungID}`
+        )
+        : ref(
+            db,
+            `reaksiKomentar/${aspirasiId}/${komentarId}/${pengunjungID}`
+        );
+
     tombol.disabled = true;
-
-    const reaksiLama =
-        semuaReaksiKomentar[komentarId]?.[pengunjungID]?.jenis || "";
-
-    const lokasi = ref(
-        db,
-        `reaksiKomentar/${aspirasiId}/${komentarId}/${pengunjungID}`
-    );
 
     try {
         if (reaksiLama === jenis) {
@@ -416,10 +557,12 @@ daftarKomentar.addEventListener("click", async event => {
             });
         }
     } catch (error) {
-        console.error("Gagal menyimpan reaksi komentar:", error);
+        console.error("Gagal menyimpan reaksi:", error);
         alert("Reaksi gagal disimpan. Periksa aturan Firebase.");
     } finally {
-        tombol.disabled = false;
+        if (tombol.isConnected) {
+            tombol.disabled = false;
+        }
     }
 });
-                      
+            
