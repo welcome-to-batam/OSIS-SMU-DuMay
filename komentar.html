@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#075985">
+
+    <title>Komentar Aspirasi - OSIS SMU DuMay</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #f1f5f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .halaman-komentar {
+            width: 100%;
+            max-width: 750px;
+            margin: auto;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .header-komentar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tombol-kembali {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            color: #075985;
+        }
+
+        .judul-komentar {
+            font-size: 21px;
+            margin: 0;
+            color: #0f172a;
+        }
+
+        #detailAspirasi,
+        #daftarKomentar {
+            margin-bottom: 20px;
+        }
+
+        .pesan-memuat {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="halaman-komentar">
+
+        <header class="header-komentar">
+            <a href="aspirasi.html" class="tombol-kembali">
+                ← Kembali
+            </a>
+
+            <h1 class="judul-komentar">
+                Diskusi Aspirasi
+            </h1>
+        </header>
+
+        <section id="detailAspirasi">
+            <p class="pesan-memuat">
+                Memuat aspirasi...
+            </p>
+        </section>
+
+        <section id="daftarKomentar">
+            <p class="pesan-memuat">
+                Memuat komentar...
+            </p>
+        </section>
+
+    </main>
+
+    <script type="module" src="./komentar-public.js"></script>
+
+</body>
+</html>
