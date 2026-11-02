@@ -692,3 +692,147 @@ main .card {
 }
 
 
+/* ==================================
+   INTERAKSI ASPIRASI SISWA
+================================== */
+
+.aspirasi-interaksi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.tombol-reaksi,
+.tombol-reaksi-komentar {
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #334155;
+    border-radius: 20px;
+    padding: 8px 13px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tombol-reaksi.aktif,
+.tombol-reaksi-komentar.aktif {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    font-weight: bold;
+}
+
+.tombol-reaksi:disabled,
+.tombol-reaksi-komentar:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.jumlah-komentar {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.tombol-lihat-komentar {
+    display: block;
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #075985;
+    color: white !important;
+    text-align: center;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.tombol-lihat-komentar:hover {
+    background: #0369a1;
+}
+
+/* ==================================
+   HALAMAN KOMENTAR
+================================== */
+
+.interaksi-komentar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.tombol-balas {
+    border: none;
+    background: transparent;
+    color: #075985;
+    font-weight: bold;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.daftar-balasan {
+    margin: 12px 0 12px 15px;
+    padding-left: 12px;
+    border-left: 3px solid #cbd5e1;
+}
+
+.balasan-item {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.tempat-form-balasan {
+    margin: 10px 0 15px 15px;
+}
+
+.form-komentar,
+.form-balasan {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.form-komentar h3 {
+    margin: 0 0 5px;
+}
+
+.form-komentar input,
+.form-balasan input,
+.form-komentar textarea,
+.form-balasan textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-komentar button,
+.form-balasan button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    background: #075985;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-komentar button:disabled,
+.form-balasan button:disabled {
+    opacity: 0.6;
+}
+
