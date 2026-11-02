@@ -836,3 +836,51 @@ main .card {
     opacity: 0.6;
 }
 
+
+/* Tanggapan terhadap balasan */
+.daftar-tanggapan {
+    margin: 10px 0 10px 15px;
+    padding-left: 12px;
+    border-left: 3px solid #cbd5e1;
+}
+
+.tanggapan-item {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.form-tanggapan {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 12px 15px;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.form-tanggapan input,
+.form-tanggapan textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-tanggapan button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    background: #075985;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
