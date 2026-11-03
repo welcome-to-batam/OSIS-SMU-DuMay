@@ -265,7 +265,7 @@ function tampilkanKomentar() {
 // Fungsi rekursif: setiap balasan dapat memiliki balasan lagi.
 function tampilkanPohon(komentarId, parentId = "", tingkat = 1) {
     const pohon = buatPohonBalasan(komentarId);
-    const daftar = pohon[parentId] || {};
+    const daftar = pohon[parentId] || [];
 
     return daftar.map(jawaban => {
         const reaksi =
