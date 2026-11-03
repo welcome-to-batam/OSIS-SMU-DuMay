@@ -884,3 +884,95 @@ main .card {
 }
 
 
+/* Tampilan komentar bertingkat */
+.balasan-item {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid #cbd5e1;
+}
+
+.tanggapan-item {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+/* Tombol interaksi semua tingkat komentar */
+.interaksi-komentar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.tombol-reaksi-komentar,
+.tombol-reaksi-balasan {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    border-radius: 20px;
+    padding: 8px 13px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tombol-reaksi-komentar.aktif,
+.tombol-reaksi-balasan.aktif {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    font-weight: bold;
+}
+
+.tombol-reaksi-komentar:disabled,
+.tombol-reaksi-balasan:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.tombol-balas {
+    border: none;
+    background: transparent;
+    color: #075985;
+    font-weight: bold;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Form balasan pada semua tingkat */
+.form-balasan {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.form-balasan input,
+.form-balasan textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-balasan button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    background: #075985;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
