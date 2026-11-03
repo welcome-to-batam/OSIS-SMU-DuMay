@@ -263,7 +263,13 @@ function tampilkanKomentar() {
 }
 
 // Fungsi rekursif: setiap balasan dapat memiliki balasan lagi.
-function tampilkanPohon(komentarId, parentId = "", tingkat = 1) {
+function tampilkanPohon(komentarId, parentId = "", tingkat = 1, jalur = new Set()) {
+        if (tingkat > 50 || jalur.has(parentId)) {
+        return "";
+    }
+
+    const jalurBaru = new Set(jalur);
+    jalurBaru.add(parentId);
     const pohon = buatPohonBalasan(komentarId);
     const daftar = pohon[parentId] || [];
 
@@ -323,7 +329,7 @@ function tampilkanPohon(komentarId, parentId = "", tingkat = 1) {
                     id="formBalasan-${aman(komentarId)}-${aman(jawaban.id)}"></div>
 
                 <div class="daftar-tanggapan">
-                    ${tampilkanPohon(komentarId, jawaban.id, tingkat + 1)}
+                    ${tampilkanPohon(komentarId, jawaban.id, tingkat + 1, jalurBaru)}
                 </div>
             </div>
         `;
