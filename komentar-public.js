@@ -150,15 +150,17 @@ function buatPohonBalasan(komentarId) {
     const tanggapanLama = semuaTanggapan[komentarId] || {};
 
     Object.entries(tanggapanLama).forEach(([balasanIndukId, daftar]) => {
-        Object.entries(daftar || {}).forEach(([id, data]) => {
-            semua[id] = {
-                id,
-                ...data,
-                parentId: data.parentId || balasanIndukId,
-                _lama: true
-            };
-        });
+    Object.entries(daftar || {}).forEach(([id, data]) => {
+        if (semua[id]) return;
+
+        semua[id] = {
+            id,
+            ...data,
+            parentId: data.parentId || balasanIndukId,
+            _lama: true
+        };
     });
+});
 
     const pohon = {};
 
