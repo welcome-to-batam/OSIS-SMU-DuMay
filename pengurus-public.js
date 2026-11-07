@@ -31,9 +31,44 @@ onValue(ref(db, "pengurus"), snapshot => {
     return;
   }
 
-  const entries = Object.entries(data)
-    .filter(([id, item]) => item.status === "aktif")
-    .reverse();
+  
+const urutanJabatan = [
+  "ketua osis",
+  "wakil ketua osis",
+  "wakil ketua",
+  "sekretaris",
+  "wakil sekretaris",
+  "bendahara",
+  "wakil bendahara",
+  "koordinator bidang",
+  "ketua bidang"
+];
+
+function prioritasJabatan(jabatan) {
+  const namaJabatan = String(jabatan || "")
+    .toLowerCase()
+    .trim();
+
+  const index = urutanJabatan.findIndex(posisi =>
+    namaJabatan.includes(posisi)
+  );
+
+  return index === -1 ? 100 : index;
+}
+
+const entries = Object.entries(data)
+  .filter(([id, item]) => item.status === "aktif")
+  .sort((a, b) => {
+    const prioritasA = prioritasJabatan(a[1].jabatan);
+    const prioritasB = prioritasJabatan(b[1].jabatan);
+
+    if (prioritasA !== prioritasB) {
+      return prioritasA - prioritasB;
+    }
+
+    return String(a[1].jabatan || "")
+      .localeCompare(String(b[1].jabatan || ""), "id");
+  });
 
   if (entries.length === 0) {
     pengurusGrid.innerHTML = `
