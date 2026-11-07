@@ -401,49 +401,64 @@
     <div class="agenda-form-panel">
         <h4 id="pengurusFormTitle">Tambah Pengurus</h4>
 
-        <form id="pengurusForm">
-            <div class="form-group">
-                <label for="pengurusNama">Nama Lengkap</label>
-                <input type="text" id="pengurusNama"
-                    placeholder="Masukkan nama lengkap" required>
-            </div>
+        
+<form id="pengurusForm">
+    <div class="form-group">
+        <label for="pengurusNama">Nama Lengkap</label>
+        <input type="text" id="pengurusNama"
+            placeholder="Masukkan nama lengkap" required>
+    </div>
 
-            <div class="form-group">
-                <label for="pengurusJabatan">Jabatan</label>
-                <input type="text" id="pengurusJabatan"
-                    placeholder="Contoh: Ketua OSIS" required>
-            </div>
+    <div class="form-group">
+        <label for="pengurusJabatan">Jabatan</label>
+        <input type="text" id="pengurusJabatan"
+            placeholder="Contoh: Ketua OSIS" required>
+    </div>
 
-            <div class="form-group">
-                <label for="pengurusKelas">Kelas</label>
-                <input type="text" id="pengurusKelas"
-                    placeholder="Contoh: XII IPA 1" required>
-            </div>
+    <div class="form-group">
+        <label for="pengurusKelas">Kelas</label>
+        <input type="text" id="pengurusKelas"
+            placeholder="Contoh: XII IPA 1" required>
+    </div>
 
-            <div class="form-group">
-                <label for="pengurusPeriode">Periode Kepengurusan</label>
-                <input type="text" id="pengurusPeriode"
-                    placeholder="Contoh: 2026/2027" required>
-            </div>
+    <div class="form-group">
+        <label for="pengurusPeriode">Periode Kepengurusan</label>
+        <input type="text" id="pengurusPeriode"
+            placeholder="Contoh: 2026/2027" required>
+    </div>
 
-            <div class="form-group">
-                <label for="pengurusFoto">Foto Pengurus</label>
-                <input type="file" id="pengurusFoto"
-                    accept="image/*">
-                <small>Format gambar, maksimal 15 MB sebelum dikompres.</small>
-                <img id="pengurusPreview" alt="Pratinjau foto pengurus"
-                    style="display:none; width:120px; height:120px; object-fit:cover; border-radius:12px; margin-top:10px;">
-            </div>
+    <div class="form-group">
+        <label for="pengurusBiodata">Biodata / Deskripsi Diri</label>
+        <textarea
+            id="pengurusBiodata"
+            rows="5"
+            maxlength="1500"
+            placeholder="Tuliskan biodata, pengalaman, karakter, atau deskripsi singkat pengurus..."
+            style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;resize:vertical;font-family:inherit;"
+        ></textarea>
+        <small>
+            Maksimal 1.500 karakter. Biodata akan ditampilkan pada halaman profil pengurus.
+        </small>
+    </div>
 
-            <button type="submit" id="pengurusSubmit" class="btn-publish">
-                Simpan Pengurus
-            </button>
+    <div class="form-group">
+        <label for="pengurusFoto">Foto Pengurus</label>
+        <input type="file" id="pengurusFoto"
+            accept="image/*">
+        <small>Format gambar, maksimal 15 MB sebelum dikompres.</small>
+        <img id="pengurusPreview" alt="Pratinjau foto pengurus"
+            style="display:none;width:120px;height:120px;object-fit:cover;border-radius:12px;margin-top:10px;">
+    </div>
 
-            <button type="button" id="pengurusCancel"
-                style="display:none;">
-                Batal Edit
-            </button>
-        </form>
+    <button type="submit" id="pengurusSubmit" class="btn-publish">
+        Simpan Pengurus
+    </button>
+
+    <button type="button" id="pengurusCancel"
+        style="display:none;">
+        Batal Edit
+    </button>
+</form>
     </div>
 
     <div class="agenda-list-panel">
