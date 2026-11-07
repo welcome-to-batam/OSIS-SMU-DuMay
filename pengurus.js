@@ -20,6 +20,7 @@ const namaInput = document.getElementById("pengurusNama");
 const jabatanInput = document.getElementById("pengurusJabatan");
 const kelasInput = document.getElementById("pengurusKelas");
 const periodeInput = document.getElementById("pengurusPeriode");
+const biodataInput = document.getElementById("pengurusBiodata");
 const fotoInput = document.getElementById("pengurusFoto");
 const preview = document.getElementById("pengurusPreview");
 const submitButton = document.getElementById("pengurusSubmit");
@@ -232,6 +233,7 @@ form.addEventListener("submit", async event => {
   const jabatan = jabatanInput.value.trim();
   const kelas = kelasInput.value.trim();
   const periode = periodeInput.value.trim();
+  const biodata = biodataInput.value.trim();
   const imageFile = fotoInput.files[0];
 
   if (!nama || !jabatan || !kelas || !periode) {
@@ -249,12 +251,13 @@ form.addEventListener("submit", async event => {
     submitButton.textContent = "Menyimpan...";
 
     const perubahan = {
-      nama,
-      jabatan,
-      kelas,
-      periode,
-      terakhirDiubah: serverTimestamp()
-    };
+  nama,
+  jabatan,
+  kelas,
+  periode,
+  biodata,
+  terakhirDiubah: serverTimestamp()
+};
 
     if (imageFile) {
       perubahan.fotoBase64 = await preparePhoto(imageFile);
@@ -325,6 +328,7 @@ pengurusList.addEventListener("click", async event => {
       jabatanInput.value = item.jabatan || "";
       kelasInput.value = item.kelas || "";
       periodeInput.value = item.periode || "";
+      biodataInput.value = item.biodata || "";
 
       currentPhoto = item.fotoBase64 || "";
 
