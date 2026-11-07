@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101d38">
+  <title>Profil Pengurus - OSIS SMU DuMay</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101d38;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px 15px;
+      background: linear-gradient(145deg, #20375d, #0b1429);
+      border-bottom: 2px solid #c9a44e;
+    }
+
+    header h2 {
+      color: #f3d88c;
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: #bdc8da;
+      font-size: 12px;
+      margin: 8px 0 0;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 17px;
+      padding: 9px 18px;
+      border: 1px solid #c9a44e;
+      border-radius: 25px;
+      color: #f3d88c;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 550px;
+      margin: auto;
+      padding: 28px 16px 45px;
+    }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 25px 20px;
+      border: 1px solid #c9a44e;
+      border-radius: 18px;
+      background: linear-gradient(155deg, #20375d, #111f3a);
+      box-shadow: 0 10px 30px #0005;
+    }
+
+    .ornament {
+      color: #f3d88c;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .photo-frame {
+      width: 190px;
+      height: 245px;
+      margin: auto;
+      padding: 6px;
+      border: 3px solid #d5b45e;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f5dc94, #94702c, #f5dc94);
+      box-shadow: 0 0 0 4px #263e60, 0 8px 20px #0008;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+      display: block;
+    }
+
+    .rank {
+      display: inline-block;
+      margin-top: 23px;
+      padding: 7px 20px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #a47a2d, #f0d58b, #a47a2d);
+      color: #192743;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .profile-card h1 {
+      color: #f3d88c;
+      font-size: 23px;
+      margin: 15px 0 8px;
+    }
+
+    .subtitle {
+      color: #bdc8da;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .bio-section {
+      margin-top: 23px;
+      text-align: left;
+      padding: 18px;
+      border: 1px solid #526783;
+      border-radius: 12px;
+      background: #142541;
+    }
+
+    .bio-section h3 {
+      color: #f3d88c;
+      font-size: 15px;
+      margin: 0 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #526783;
+    }
+
+    .bio-row {
+      display: flex;
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #ffffff15;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .bio-row:last-child {
+      border-bottom: 0;
+    }
+
+    .bio-label {
+      width: 95px;
+      flex-shrink: 0;
+      color: #bdc8da;
+    }
+
+    .bio-value {
+      color: white;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .loading,
+    .error {
+      text-align: center;
+      padding: 30px 15px;
+      color: #bdc8da;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #344763;
+      color: #899bb5;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h2>PROFIL PENGURUS</h2>
+    <p>Organisasi Siswa Intra Sekolah SMU DuMay</p>
+    <a class="back" href="pengurus.html">← Kembali ke Daftar Pengurus</a>
+  </header>
+
+  <main>
+    <div id="profileContainer">
+      <div class="profile-card loading">
+        Memuat profil pengurus...
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 OSIS SMU DuMay
+  </footer>
+
+  <script type="module" src="./profil-pengurus.js"></script>
+
+</body>
+</html>
