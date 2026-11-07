@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101d38">
+  <title>Pengurus OSIS - SMU DuMay</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101d38;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 28px 16px 24px;
+      background: linear-gradient(145deg, #172b50, #0b1429);
+      border-bottom: 2px solid #c9a44e;
+    }
+
+    .emblem {
+      color: #e6c36d;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #f3d88c;
+      font-size: 24px;
+      letter-spacing: 1.5px;
+    }
+
+    header p {
+      color: #c3ccdc;
+      font-size: 13px;
+      margin: 9px 0 0;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 9px 18px;
+      border: 1px solid #c9a44e;
+      border-radius: 25px;
+      color: #f3d88c;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 25px 14px 45px;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #f3d88c;
+      margin: 8px 0 6px;
+      font-size: 19px;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: #aebbd0;
+      font-size: 12px;
+      margin: 0 0 25px;
+    }
+
+    .pengurus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px 12px;
+    }
+
+    .pengurus-card {
+      position: relative;
+      display: block;
+      text-align: center;
+      padding: 17px 10px 16px;
+      border: 1px solid #b99545;
+      border-radius: 15px;
+      background: linear-gradient(155deg, #20375d, #111f3a 75%);
+      color: white;
+      text-decoration: none;
+      overflow: hidden;
+      box-shadow: 0 7px 18px #0005;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .pengurus-card:active {
+      transform: scale(.97);
+    }
+
+    .pengurus-card::before,
+    .pengurus-card::after {
+      content: "✦";
+      position: absolute;
+      color: #e6c36d;
+      font-size: 17px;
+      opacity: .85;
+    }
+
+    .pengurus-card::before {
+      top: 7px;
+      left: 9px;
+    }
+
+    .pengurus-card::after {
+      bottom: 7px;
+      right: 9px;
+    }
+
+    .crown {
+      color: #f1d27e;
+      font-size: 21px;
+      margin-bottom: 7px;
+    }
+
+    .photo-frame {
+      width: 112px;
+      height: 145px;
+      margin: auto;
+      padding: 5px;
+      border: 2px solid #d5b45e;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #f5dc94, #94702c, #f5dc94);
+      box-shadow: 0 0 0 3px #263e60, 0 5px 13px #0008;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      background: #dce3ed;
+    }
+
+    .no-photo {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #53647c;
+      font-size: 12px;
+      background: #e4e9f0;
+    }
+
+    .rank {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #a47a2d, #f0d58b, #a47a2d);
+      color: #192743;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .pengurus-card h3 {
+      font-size: 14px;
+      margin: 10px 0 5px;
+      line-height: 1.35;
+    }
+
+    .pengurus-card .kelas {
+      color: #b9c7db;
+      font-size: 11px;
+      margin: 0;
+    }
+
+    .empty,
+    .loading,
+    .error {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 30px 15px;
+      color: #bdc8da;
+      background: #1a2c4b;
+      border: 1px solid #53698a;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #899bb5;
+      font-size: 11px;
+      border-top: 1px solid #344763;
+    }
+
+    @media (min-width: 650px) {
+      .pengurus-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .photo-frame {
+        width: 135px;
+        height: 175px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .pengurus-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="emblem">♛</div>
+    <h1>PENGURUS OSIS</h1>
+    <p>Organisasi Siswa Intra Sekolah<br>SMU DuMay</p>
+    <a class="back" href="index.html">← Kembali ke Beranda</a>
+  </header>
+
+  <main>
+    <h2 class="section-title">Struktur Kepengurusan</h2>
+    <p class="section-desc">
+      Kenali para pengurus OSIS SMU DuMay
+    </p>
+
+    <div id="pengurusGrid" class="pengurus-grid">
+      <div class="loading">Memuat data pengurus...</div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 OSIS SMU DuMay
+  </footer>
+
+  <script type="module" src="./pengurus-public.js"></script>
+
+</body>
+</html>
