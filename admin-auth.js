@@ -178,8 +178,9 @@ if (enableNotificationsBtn) {
       console.error("Gagal mengaktifkan notifikasi:", error);
 
       alert(
-        "Notifikasi gagal diaktifkan. Periksa izin notifikasi dan konfigurasi FCM."
-      );
+  "Notifikasi gagal diaktifkan:\n" +
+  (error.message || "Kesalahan tidak diketahui")
+);
 
       enableNotificationsBtn.disabled = false;
       enableNotificationsBtn.textContent = "Aktifkan Notifikasi";
