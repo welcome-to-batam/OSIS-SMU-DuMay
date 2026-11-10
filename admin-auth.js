@@ -9,7 +9,8 @@ import { aktifkanNotifikasiAdmin } from "./firebase-messaging.js";
 
 import {
   ref,
-  set
+  set,
+  get
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 const ADMIN_UID = "HWQfLxdBkqNWNdeCxec0PD3ddBJ2";
@@ -119,6 +120,28 @@ onAuthStateChanged(auth, async (user) => {
   if (user && user.uid === ADMIN_UID) {
     login.style.display = "none";
     document.body.classList.add("admin-authenticated");
+
+    const enableBtn = document.getElementById("enableNotificationsBtn");
+
+    if (enableBtn) {
+      try {
+        const deviceRef = ref(db, `adminDevices/${user.uid}/token`);
+        const snapshot = await get(deviceRef);
+
+        if (snapshot.exists() && snapshot.val().token) {
+  enableBtn.dataset.active = "true";
+  enableBtn.disabled = false;
+  enableBtn.innerHTML = '<i class="fas fa-bell"></i> Notifikasi Aktif';
+} else {
+  enableBtn.dataset.active = "false";
+  enableBtn.disabled = false;
+  enableBtn.innerHTML = '<i class="fas fa-bell"></i> Aktifkan Notifikasi';
+        }
+      } catch (error) {
+        console.error("Gagal memeriksa status notifikasi:", error);
+      }
+    }
+
   } else {
     document.body.classList.remove("admin-authenticated");
     login.style.display = "flex";
@@ -158,8 +181,14 @@ if (enableNotificationsBtn) {
       return;
     }
 
+    // Mencegah aktivasi berulang
+    if (enableNotificationsBtn.dataset.active === "true") {
+      return;
+    }
+
     enableNotificationsBtn.disabled = true;
-    enableNotificationsBtn.textContent = "Mengaktifkan...";
+    enableNotificationsBtn.innerHTML =
+      '<i class="fas fa-bell"></i> Mengaktifkan...';
 
     try {
       const token = await aktifkanNotifikasiAdmin();
@@ -171,20 +200,27 @@ if (enableNotificationsBtn) {
         updatedAt: Date.now()
       });
 
+      enableNotificationsBtn.dataset.active = "true";
+      enableNotificationsBtn.disabled = false;
+
+      enableNotificationsBtn.innerHTML =
+        '<i class="fas fa-bell"></i> Notifikasi Aktif';
+
       alert("Notifikasi berhasil diaktifkan pada perangkat ini!");
 
-      enableNotificationsBtn.textContent = "Notifikasi Aktif";
     } catch (error) {
       console.error("Gagal mengaktifkan notifikasi:", error);
 
       alert(
-  "Notifikasi gagal diaktifkan:\n" +
-  (error.message || "Kesalahan tidak diketahui")
-);
+        "Notifikasi gagal diaktifkan:\n" +
+        (error.message || "Kesalahan tidak diketahui")
+      );
 
+      enableNotificationsBtn.dataset.active = "false";
       enableNotificationsBtn.disabled = false;
-      enableNotificationsBtn.textContent = "Aktifkan Notifikasi";
+
+      enableNotificationsBtn.innerHTML =
+        '<i class="fas fa-bell"></i> Aktifkan Notifikasi';
     }
   });
 }
-
