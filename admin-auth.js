@@ -117,3 +117,24 @@ onAuthStateChanged(auth, async (user) => {
     login.style.display = "flex";
   }
 });
+
+// TOMBOL LOGOUT ADMIN
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    const konfirmasi = confirm(
+      "Apakah kamu yakin ingin logout dari Admin Panel?"
+    );
+
+    if (!konfirmasi) return;
+
+    try {
+      await signOut(auth);
+      window.location.href = "admin.html";
+    } catch (error) {
+      alert("Logout gagal. Silakan coba kembali.");
+      console.error("Logout error:", error);
+    }
+  });
+}
