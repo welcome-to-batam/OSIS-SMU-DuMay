@@ -1,9 +1,16 @@
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import { aktifkanNotifikasiAdmin } from "./firebase-messaging.js";
+
+import {
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 const ADMIN_UID = "HWQfLxdBkqNWNdeCxec0PD3ddBJ2";
 
@@ -138,3 +145,45 @@ if (logoutBtn) {
     }
   });
 }
+
+// AKTIFKAN NOTIFIKASI ADMIN
+const enableNotificationsBtn = document.getElementById("enableNotificationsBtn");
+
+if (enableNotificationsBtn) {
+  enableNotificationsBtn.addEventListener("click", async () => {
+    const user = auth.currentUser;
+
+    if (!user || user.uid !== ADMIN_UID) {
+      alert("Silakan login sebagai administrator terlebih dahulu.");
+      return;
+    }
+
+    enableNotificationsBtn.disabled = true;
+    enableNotificationsBtn.textContent = "Mengaktifkan...";
+
+    try {
+      const token = await aktifkanNotifikasiAdmin();
+
+      const deviceRef = ref(db, `adminDevices/${user.uid}/token`);
+
+      await set(deviceRef, {
+        token: token,
+        updatedAt: Date.now()
+      });
+
+      alert("Notifikasi berhasil diaktifkan pada perangkat ini!");
+
+      enableNotificationsBtn.textContent = "Notifikasi Aktif";
+    } catch (error) {
+      console.error("Gagal mengaktifkan notifikasi:", error);
+
+      alert(
+        "Notifikasi gagal diaktifkan. Periksa izin notifikasi dan konfigurasi FCM."
+      );
+
+      enableNotificationsBtn.disabled = false;
+      enableNotificationsBtn.textContent = "Aktifkan Notifikasi";
+    }
+  });
+}
+
