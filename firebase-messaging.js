@@ -28,8 +28,8 @@ export async function aktifkanNotifikasiAdmin() {
       throw new Error("Firebase Messaging tidak didukung browser ini.");
     }
 
-    if (VAPID_KEY === "BNT7tql1kVYfHVSCWka_N3uOWhZ6a7fc8LEXFxJXHoTkdo-0YCZ2xh8EVY32ZGPNXeB4eZp0d06COlv5rN-9Sbs") {
-      throw new Error("VAPID Key belum diisi.");
+    if (VAPID_KEY === "TEMPEL_PUBLIC_VAPID_KEY_DI_SINI") {
+  throw new Error("VAPID Key belum diisi.");
     }
 
     const permission = await Notification.requestPermission();
