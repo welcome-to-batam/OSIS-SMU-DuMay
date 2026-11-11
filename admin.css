@@ -862,3 +862,23 @@ body.admin-body {
     cursor: not-allowed;
 }
 
+/* TOMBOL AKTIFKAN NOTIFIKASI */
+#enableNotificationsBtn {
+    background: #007bff;
+    color: #ffffff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+}
+
+/* SAAT NOTIFIKASI SUDAH AKTIF */
+#enableNotificationsBtn[data-active="true"] {
+    background: #198754;
+    color: #ffffff;
+    border-color: #198754;
+}
+
+/* SAAT TOMBOL DINONAKTIFKAN */
+#enableNotificationsBtn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
