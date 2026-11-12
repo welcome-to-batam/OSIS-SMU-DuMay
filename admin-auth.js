@@ -141,6 +141,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
+    console.log("Tombol logout berhasil diklik");
     const konfirmasi = confirm(
       "Apakah kamu yakin ingin logout dari Admin Panel?"
     );
