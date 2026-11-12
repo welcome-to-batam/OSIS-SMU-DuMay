@@ -181,11 +181,6 @@ if (enableNotificationsBtn) {
       return;
     }
 
-    // Mencegah aktivasi berulang
-    if (enableNotificationsBtn.dataset.active === "true") {
-      return;
-    }
-
     enableNotificationsBtn.disabled = true;
     enableNotificationsBtn.innerHTML =
       '<i class="fas fa-bell"></i> Mengaktifkan...';
