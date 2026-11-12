@@ -124,13 +124,13 @@ onAuthStateChanged(auth, async (user) => {
     const enableBtn = document.getElementById("enableNotificationsBtn");
 
     if (enableBtn) {
-enableBtn.dataset.active = "false";
-enableBtn.disabled = false;
-enableBtn.innerHTML =
-  '<i class="fas fa-bell"></i> Perbarui Notifikasi';
-      } 
-      
-    else {
+      enableBtn.dataset.active = "false";
+      enableBtn.disabled = false;
+      enableBtn.innerHTML =
+        '<i class="fas fa-bell"></i> Perbarui Notifikasi';
+    }
+
+  } else {
     document.body.classList.remove("admin-authenticated");
     login.style.display = "flex";
   }
