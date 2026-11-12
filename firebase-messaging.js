@@ -2,10 +2,7 @@
 import { getApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
-  getMessaging,
-  getToken,
-  onMessage,
-  isSupported
+  getMessaging, getToken, deleteToken, onMessage, isSupported
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-messaging.js";
 
 // Public VAPID Key dari Firebase Console
@@ -42,7 +39,11 @@ export async function aktifkanNotifikasiAdmin() {
 
     const messaging = getMessaging(getApp());
 
-    const token = await getToken(messaging, {
+// Hapus token lama yang sudah tidak berlaku
+await deleteToken(messaging);
+
+// Buat token FCM baru
+const token = await getToken(messaging, {
       vapidKey: VAPID_KEY,
       serviceWorkerRegistration: registration
     });
