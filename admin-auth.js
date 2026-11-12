@@ -124,25 +124,13 @@ onAuthStateChanged(auth, async (user) => {
     const enableBtn = document.getElementById("enableNotificationsBtn");
 
     if (enableBtn) {
-      try {
-        const deviceRef = ref(db, `adminDevices/${user.uid}/token`);
-        const snapshot = await get(deviceRef);
-
-        if (snapshot.exists() && snapshot.val().token) {
-  enableBtn.dataset.active = "true";
-  enableBtn.disabled = false;
-  enableBtn.innerHTML = '<i class="fas fa-bell"></i> Notifikasi Aktif';
-} else {
-  enableBtn.dataset.active = "false";
-  enableBtn.disabled = false;
-  enableBtn.innerHTML = '<i class="fas fa-bell"></i> Aktifkan Notifikasi';
-        }
-      } catch (error) {
-        console.error("Gagal memeriksa status notifikasi:", error);
-      }
-    }
-
-  } else {
+enableBtn.dataset.active = "false";
+enableBtn.disabled = false;
+enableBtn.innerHTML =
+  '<i class="fas fa-bell"></i> Perbarui Notifikasi';
+      } 
+      
+    else {
     document.body.classList.remove("admin-authenticated");
     login.style.display = "flex";
   }
