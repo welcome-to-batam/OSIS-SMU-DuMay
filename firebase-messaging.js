@@ -35,8 +35,10 @@ export async function aktifkanNotifikasiAdmin() {
       throw new Error("Izin notifikasi belum diberikan.");
     }
 
-    const registration = await navigator.serviceWorker.ready;
+    await navigator.serviceWorker.register("./sw.js");
 
+    const registration = await navigator.serviceWorker.ready;
+    
     const messaging = getMessaging(getApp());
 
 // Hapus token lama yang sudah tidak berlaku
